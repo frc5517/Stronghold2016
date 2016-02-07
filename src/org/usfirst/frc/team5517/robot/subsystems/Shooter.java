@@ -1,37 +1,29 @@
 package org.usfirst.frc.team5517.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import org.usfirst.frc.team5517.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Shooter extends PIDSubsystem {
+public class Shooter extends Subsystem {
+    
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
 
-    // Initialize your subsystem here
-    public Shooter() {
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
-        super("Shooter", 0.0, 0.0, 0.0);
-        setSetpoint(1.2);
-        enable();
-    }
-
+    CANTalon shooterMotorTalon = new CANTalon(RobotMap.shooterMotorCAN);
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-
-    protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
-        return 0.0;
-    }
-
-    protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
+    
+    public void spinShooterAtSpeed(double speed) {
+        shooterMotorTalon.changeControlMode(TalonControlMode.Speed);
+        shooterMotorTalon.set(speed);
     }
 }
+
