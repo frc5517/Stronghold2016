@@ -10,22 +10,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-    
-	RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    
+
+    RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
+
     public DriveTrain() {
     }
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoysticks());
     }
-    
+
     public void tankDrive(double left, double right) {
-    	robotDrive.tankDrive(left, right);
+        robotDrive.tankDrive(left, right);
     }
-    
+
     public void stop() {
-    	robotDrive.drive(0, 0);
+        robotDrive.drive(0, 0);
     }
 }
 
