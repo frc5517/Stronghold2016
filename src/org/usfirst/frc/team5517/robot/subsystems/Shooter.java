@@ -14,7 +14,9 @@ public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    private final double shooterSpeed = 0;
+    private final double Kp = 0;
+    private final double Ki = 0;
+    private final double Kd = 0;
     
     CANTalon shooterMotorTalon = new CANTalon(RobotMap.shooterMotorCAN);
     
