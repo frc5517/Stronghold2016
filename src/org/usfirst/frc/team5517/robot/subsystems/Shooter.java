@@ -25,6 +25,8 @@ public class Shooter extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    // TODO Create methods and commands for this subysstem
+    
     /**
      * Manually run shooter at a certain speed
      * @param speed The speed to run the shooter wheels at
