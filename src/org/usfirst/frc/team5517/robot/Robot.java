@@ -22,9 +22,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
     // Subsystems
-    public static final DriveTrain driveTrain = new DriveTrain();
-    public static final Intake intake = new Intake();
-    public static final Shooter shooter = new Shooter();
+    public static final DriveTrain driveTrainSubsystem = new DriveTrain();
+    public static final Intake intakeSubsystem = new Intake();
+    public static final Shooter shooterSubsystem = new Shooter();
     public static OI oi;
 
     Command autonomousCommand;
