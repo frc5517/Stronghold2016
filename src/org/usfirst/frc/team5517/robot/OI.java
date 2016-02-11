@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5517.robot;
 
+import org.usfirst.frc.team5517.robot.commands.SpinShooter;
 import org.usfirst.frc.team5517.robot.utils.Gamepad;
+
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,6 +43,7 @@ public class OI {
     public OI() {
         mainDriverGamepad = new Gamepad(RobotMap.mainDriverGamepadPort);
         operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
+        new JoystickButton(mainDriverGamepad, 1).whileHeld(new SpinShooter());
     }
 
     public double getLeftJoystickY() {

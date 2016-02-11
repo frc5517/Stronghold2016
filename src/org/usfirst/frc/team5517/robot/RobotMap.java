@@ -21,7 +21,7 @@ public class RobotMap {
     public static int shooterMotorCAN = 1;
 
     // Controller USB Ports
-    public static int mainDriverGamepadPort = 1;
+    public static int mainDriverGamepadPort = 0;
     public static int operatorGamepadPort = 2;
 
     public static void init() {

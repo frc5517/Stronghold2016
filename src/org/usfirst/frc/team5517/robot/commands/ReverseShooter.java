@@ -5,11 +5,11 @@ import org.usfirst.frc.team5517.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Spin the shooter wheels to power them up for shooting
+ * Reverse the shooter wheels (during intake)
  */
-public class SpinShooter extends Command {
+public class ReverseShooter extends Command {
 
-    public SpinShooter() {
+    public ReverseShooter() {
         requires(Robot.shooterSubsystem);
     }
 
@@ -19,7 +19,6 @@ public class SpinShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shooterSubsystem.runShooter();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,12 +28,10 @@ public class SpinShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.shooterSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

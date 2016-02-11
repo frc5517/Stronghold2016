@@ -52,3 +52,5 @@ build.properties
 
 # Code Recommenders
 .recommenders/
+
+sysProps.xml
