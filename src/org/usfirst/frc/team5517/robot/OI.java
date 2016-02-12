@@ -1,9 +1,8 @@
 package org.usfirst.frc.team5517.robot;
 
+import org.usfirst.frc.team5517.robot.commands.ReverseShooter;
 import org.usfirst.frc.team5517.robot.commands.SpinShooter;
 import org.usfirst.frc.team5517.robot.utils.Gamepad;
-
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -37,13 +36,12 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 
-    Gamepad mainDriverGamepad;
-    Gamepad operatorGamepad;
+    Gamepad mainDriverGamepad = new Gamepad(RobotMap.mainDriverGamepadPort);
+    Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
     public OI() {
-        mainDriverGamepad = new Gamepad(RobotMap.mainDriverGamepadPort);
-        operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
-        new JoystickButton(mainDriverGamepad, 1).whileHeld(new SpinShooter());
+        mainDriverGamepad.getButtonA().whileHeld(new SpinShooter());
+        mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter());
     }
 
     public double getLeftJoystickY() {
