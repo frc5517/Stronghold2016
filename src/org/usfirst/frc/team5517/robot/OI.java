@@ -45,11 +45,11 @@ public class OI {
     }
 
     public double getLeftJoystickY() {
-        return mainDriverGamepad.getLeftY();
+        return -mainDriverGamepad.getLeftY();
     }
 
     public double getRightJoystickY() {
-        return mainDriverGamepad.getRightY();
+        return -mainDriverGamepad.getRightY();
     }
 
 

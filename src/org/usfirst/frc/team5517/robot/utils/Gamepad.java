@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class Gamepad extends Joystick {
     // Gamepad axis ports
-    private static final int AXIS_LEFT_X = 1;
-    private static final int AXIS_LEFT_Y = 2;
-    private static final int AXIS_SHOULDER = 3;
+    private static final int AXIS_LEFT_X = 0;
+    private static final int AXIS_LEFT_Y = 1;
+    private static final int AXIS_SHOULDER = 2;
     private static final int AXIS_RIGHT_X = 4;
     private static final int AXIS_RIGHT_Y = 5;
-    private static final int AXIS_DPAD = 6;
+    private static final int AXIS_DPAD = 5;
 
     // Gamepad buttons
-    private static final int BUTTON_A = 2;
-    private static final int BUTTON_B = 3;
-    private static final int BUTTON_X = 1;
+    private static final int BUTTON_A = 1;
+    private static final int BUTTON_B = 2;
+    private static final int BUTTON_X = 3;
     private static final int BUTTON_Y = 4;
     private static final int BUTTON_SHOULDER_LEFT = 5;
     private static final int BUTTON_SHOULDER_RIGHT = 6;
