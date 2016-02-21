@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5517.robot;
 
+import org.usfirst.frc.team5517.robot.subsystems.BallHolder;
 import org.usfirst.frc.team5517.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5517.robot.subsystems.Intake;
 import org.usfirst.frc.team5517.robot.subsystems.Shooter;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
     public static final DriveTrain driveTrainSubsystem = new DriveTrain();
     public static final Intake intakeSubsystem = new Intake();
     public static final Shooter shooterSubsystem = new Shooter();
+    public static final BallHolder ballHolderSubsystem = new BallHolder();
     public static OI oi;
 
     Command autonomousCommand;

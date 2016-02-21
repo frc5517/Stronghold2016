@@ -5,12 +5,15 @@ import org.usfirst.frc.team5517.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Reverse the shooter wheels (during intake)
+ * Spin the shooter wheels in reverse
  */
 public class ReverseShooter extends Command {
 
-    public ReverseShooter() {
+    double percent;
+    
+    public ReverseShooter(double percent) {
         requires(Robot.shooterSubsystem);
+        this.percent = percent;
     }
 
     // Called just before this Command runs the first time
@@ -19,6 +22,7 @@ public class ReverseShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.shooterSubsystem.runShooterAtPercent(this.percent);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -28,10 +32,12 @@ public class ReverseShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+        Robot.shooterSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }

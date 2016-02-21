@@ -26,8 +26,24 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new TankDriveWithJoysticks());
     }
 
+    /**
+     * Tank drive - inputs are squared for more precision
+     * @param left
+     * @param right
+     */
     public void tankDrive(double left, double right) {
-        robotDrive.tankDrive(left, right);
+        double leftSquared = (left * left) * (left < 0 ? -1  : 1);
+        double rightSquared = (right * right) * (right < 0 ? -1 : 1);
+        robotDrive.tankDrive(leftSquared, rightSquared);
+    }
+    
+    /**
+     * Manually drive robot with output and curve
+     * @param outputMagnitude -1.0 - 1.0 Speed
+     * @param curve -1.0 - 1.0. Less than 0 turns left, greater than 0 turns right
+     */
+    public void manualDrive(double outputMagnitude, double curve) {
+        robotDrive.drive(outputMagnitude, curve);
     }
 
     public void stop() {

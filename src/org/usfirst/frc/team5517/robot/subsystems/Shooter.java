@@ -16,7 +16,7 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
 
     private final double speedTarget = 0.4;
-    private final double Kp = 0.2;
+    private final double Kp = 0;
     private final double Ki = 0;
     private final double Kd = 0;
     
@@ -27,6 +27,7 @@ public class Shooter extends Subsystem {
         shooterMotorTalon.configPeakOutputVoltage(+12.0f, 0.0f);
         shooterMotorTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
         shooterMotorTalon.reverseSensor(true);
+        shooterMotorTalon.changeControlMode(TalonControlMode.Speed);
         shooterMotorTalon.enable();
     }
     
@@ -68,7 +69,8 @@ public class Shooter extends Subsystem {
      */
     public void runShooter() {
         shooterMotorTalon.setPID(Kp, Ki, Kd);
-        shooterMotorTalon.setSetpoint(speedTarget);
+        shooterMotorTalon.setSetpoint(1500);
+        shooterMotorTalon.enable();
         System.out.println(shooterMotorTalon.getSpeed());
     }
     

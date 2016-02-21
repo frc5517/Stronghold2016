@@ -41,7 +41,7 @@ public class OI {
 
     public OI() {
         mainDriverGamepad.getButtonA().whileHeld(new SpinShooter());
-        mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter());
+        mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter(0.3));
     }
 
     public double getLeftJoystickY() {
