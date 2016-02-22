@@ -8,12 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * Spin the shooter wheels in reverse
  */
 public class ReverseShooter extends Command {
-
-    double percent;
     
-    public ReverseShooter(double percent) {
+    public ReverseShooter() {
         requires(Robot.shooterSubsystem);
-        this.percent = percent;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +19,7 @@ public class ReverseShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shooterSubsystem.runShooterAtPercent(this.percent);
+        Robot.shooterSubsystem.reverseShooter();
     }
 
     // Make this return true when this Command no longer needs to run execute()

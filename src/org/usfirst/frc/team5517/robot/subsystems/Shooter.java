@@ -15,8 +15,9 @@ public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    private final double speedTarget = 0.4;
-    private final double Kp = 0;
+    private final double REVERSE_SPEED = 500;
+    private final double SHOOT_SPEED = 1500;
+    private final double Kp = 0.2;
     private final double Ki = 0;
     private final double Kd = 0;
     
@@ -24,7 +25,7 @@ public class Shooter extends Subsystem {
     
     public Shooter() {
         shooterMotorTalon.configNominalOutputVoltage(+0.0f, -0.0f);
-        shooterMotorTalon.configPeakOutputVoltage(+12.0f, 0.0f);
+        shooterMotorTalon.configPeakOutputVoltage(+12.0f, -12.0f);
         shooterMotorTalon.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
         shooterMotorTalon.reverseSensor(true);
         shooterMotorTalon.changeControlMode(TalonControlMode.Speed);
@@ -65,13 +66,24 @@ public class Shooter extends Subsystem {
     }
     
     /**
-     * Run the shooter at a constant speed for shooting
+     * Run the shooter at a constant speed (PID on SRX)
      */
-    public void runShooter() {
+    public void runShooterPID(double speed) {
         shooterMotorTalon.setPID(Kp, Ki, Kd);
-        shooterMotorTalon.setSetpoint(1500);
+        shooterMotorTalon.setSetpoint(speed);
         shooterMotorTalon.enable();
-        System.out.println(shooterMotorTalon.getSpeed());
+        System.out.println(shooterMotorTalon.getEncVelocity());
+    }
+    public void spinShooter() {
+        runShooterPID(-SHOOT_SPEED);
+        System.out.print("Shoot");
+    }
+    public void reverseShooter() {
+        runShooterPID(REVERSE_SPEED);
+    }
+    
+    public double checkSpeed() {
+        return shooterMotorTalon.getEncVelocity();
     }
     
     public void stop() {

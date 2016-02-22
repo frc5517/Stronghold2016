@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Provides methods for driving the robot
  */
 public class DriveTrain extends Subsystem {
+    
+    private final double TANK_DRIVE_EXPONENTIAL = 1.2;
 
     Talon driveLeft1 = new Talon(RobotMap.driveTrainLeft1PWM);
     Talon driveLeft2 = new Talon(RobotMap.driveTrainLeft2PWM);
@@ -32,9 +34,9 @@ public class DriveTrain extends Subsystem {
      * @param right
      */
     public void tankDrive(double left, double right) {
-        double leftSquared = (left * left) * (left < 0 ? -1  : 1);
-        double rightSquared = (right * right) * (right < 0 ? -1 : 1);
-        robotDrive.tankDrive(leftSquared, rightSquared);
+        double leftExp = Math.pow(left, TANK_DRIVE_EXPONENTIAL) * (left < 0 ? -1  : 1);
+        double rightExp = Math.pow(right, TANK_DRIVE_EXPONENTIAL) * (right < 0 ? -1 : 1);
+        robotDrive.tankDrive(left, right);
     }
     
     /**
@@ -45,7 +47,10 @@ public class DriveTrain extends Subsystem {
     public void manualDrive(double outputMagnitude, double curve) {
         robotDrive.drive(outputMagnitude, curve);
     }
-
+    
+    /**
+     * Stop robot drive train
+     */
     public void stop() {
         robotDrive.drive(0, 0);
     }

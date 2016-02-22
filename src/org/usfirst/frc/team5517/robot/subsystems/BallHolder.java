@@ -18,17 +18,21 @@ public class BallHolder extends Subsystem {
     }
     
     /**
-     * Hold ball in place
+     * Move towards ball
      */
     public void holdBall() {
-        
+        motor.set(0.2);
     }
     
     /**
      * Release ball into shooter flywheels
      */
     public void releaseBall() {
-        
+        motor.set(-0.2);
+    }
+    
+    public void stop() {
+        motor.set(0);
     }
 }
 

@@ -12,13 +12,13 @@ public class RobotMap {
     public static int shooterMotorCAN = 1;
     public static int intakeRollerMotorPWM = 0;
     public static int intakePivotMotorPWM = 1;
-    public static int ballHolderMotorPWM = 2;
+    public static int ballHolderMotorPWM = 6;
 
     // Drive Motors
-    public static int driveTrainLeft1PWM = 3;
-    public static int driveTrainLeft2PWM = 4;
-    public static int driveTrainRight1PWM = 5;
-    public static int driveTrainRight2PWM = 6;
+    public static int driveTrainLeft1PWM = 2;
+    public static int driveTrainLeft2PWM = 3;
+    public static int driveTrainRight1PWM = 4;
+    public static int driveTrainRight2PWM = 5;
     
     // Sensors
     public static int intakeLimitSwitchDown = 0;

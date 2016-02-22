@@ -1,7 +1,11 @@
 package org.usfirst.frc.team5517.robot;
 
-import org.usfirst.frc.team5517.robot.commands.ReverseShooter;
-import org.usfirst.frc.team5517.robot.commands.SpinShooter;
+import org.usfirst.frc.team5517.robot.commands.BeginShooting;
+import org.usfirst.frc.team5517.robot.commands.LowerIntake;
+import org.usfirst.frc.team5517.robot.commands.RaiseIntake;
+import org.usfirst.frc.team5517.robot.commands.ReleaseBall;
+import org.usfirst.frc.team5517.robot.commands.SpinIntakeRollerIn;
+import org.usfirst.frc.team5517.robot.commands.StopShooter;
 import org.usfirst.frc.team5517.robot.utils.Gamepad;
 
 /**
@@ -40,8 +44,13 @@ public class OI {
     Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
     public OI() {
-        mainDriverGamepad.getButtonA().whileHeld(new SpinShooter());
-        mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter(0.3));
+        mainDriverGamepad.getButtonA().whenPressed(new BeginShooting());
+        mainDriverGamepad.getButtonB().whenPressed(new StopShooter());
+        //mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter());
+        mainDriverGamepad.getLeftShoulder().whileHeld(new LowerIntake());
+        mainDriverGamepad.getRightShoulder().whileHeld(new RaiseIntake());
+        mainDriverGamepad.getButtonX().whileHeld(new SpinIntakeRollerIn());
+        mainDriverGamepad.getButtonY().whenPressed(new ReleaseBall());
     }
 
     public double getLeftJoystickY() {
