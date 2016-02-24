@@ -5,11 +5,12 @@ import org.usfirst.frc.team5517.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Single-stick arcade drive
  */
-public class TankDriveWithJoysticks extends Command {
+public class ArcadeDrive extends Command {
 
-    public TankDriveWithJoysticks() {
+    public ArcadeDrive() {
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrainSubsystem);
     }
 
@@ -19,7 +20,7 @@ public class TankDriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveTrainSubsystem.tankDrive(Robot.oi.getLeftJoystickY(), Robot.oi.getRightJoystickY());
+        Robot.driveTrainSubsystem.arcadeDrive(Robot.oi.getLeftJoystickY(), Robot.oi.getLeftJoystickX());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,12 +30,10 @@ public class TankDriveWithJoysticks extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.driveTrainSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

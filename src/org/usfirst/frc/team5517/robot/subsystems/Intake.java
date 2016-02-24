@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-    public final double ROLLER_IN_SPEED = 0.5;
-    public final double ROLLER_OUT_SPEED = 0.2;
-    public final double PIVOT_UP_SPEED = -0.7;
+    public final double ROLLER_IN_SPEED = 1;
+    public final double ROLLER_OUT_SPEED = 0.4;
+    public final double PIVOT_UP_SPEED = 0.7;
     public final double PIVOT_DOWN_SPEED = 0.7;
     
     Victor pivotMotor = new Victor(RobotMap.intakePivotMotorPWM);
@@ -30,7 +30,7 @@ public class Intake extends Subsystem {
      * Move the intake bar up
      */
     public void pivotUp() {
-        pivotMotor.set(PIVOT_UP_SPEED);
+        pivotMotor.set(-PIVOT_UP_SPEED);
     }
     
     /**

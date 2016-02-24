@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5517.robot.subsystems;
 
 import org.usfirst.frc.team5517.robot.RobotMap;
-import org.usfirst.frc.team5517.robot.commands.TankDriveWithJoysticks;
+import org.usfirst.frc.team5517.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
@@ -22,21 +22,11 @@ public class DriveTrain extends Subsystem {
     RobotDrive robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
 
     public DriveTrain() {
+        robotDrive.setSafetyEnabled(false);
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new TankDriveWithJoysticks());
-    }
-
-    /**
-     * Tank drive - inputs are squared for more precision
-     * @param left
-     * @param right
-     */
-    public void tankDrive(double left, double right) {
-        double leftExp = Math.pow(left, TANK_DRIVE_EXPONENTIAL) * (left < 0 ? -1  : 1);
-        double rightExp = Math.pow(right, TANK_DRIVE_EXPONENTIAL) * (right < 0 ? -1 : 1);
-        robotDrive.tankDrive(left, right);
+        setDefaultCommand(new TankDrive());
     }
     
     /**
@@ -46,6 +36,34 @@ public class DriveTrain extends Subsystem {
      */
     public void manualDrive(double outputMagnitude, double curve) {
         robotDrive.drive(outputMagnitude, curve);
+    }
+
+    /**
+     * Tank drive - inputs are squared for more precision
+     * @param left
+     * @param right
+     */
+    public void tankDrive(double left, double right) {
+        //double leftExp = Math.pow(left, TANK_DRIVE_EXPONENTIAL) * (left < 0 ? -1  : 1);
+        //double rightExp = Math.pow(right, TANK_DRIVE_EXPONENTIAL) * (right < 0 ? -1 : 1);
+        robotDrive.tankDrive(left, right);
+    }
+    
+    /**
+     * Arcade drive
+     * @param moveValue
+     * @param rotateValue
+     */
+    public void arcadeDrive(double moveValue, double rotateValue) {
+        robotDrive.arcadeDrive(moveValue, rotateValue);
+    }
+    
+    /**
+     * Set max speed of motors
+     * @param speed
+     */
+    public void setSpeed(double speed) {
+        robotDrive.setMaxOutput(speed);
     }
     
     /**

@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class BeginShooting extends CommandGroup {
+public class AutoMoat extends CommandGroup {
     
-    public  BeginShooting() {
+    public  AutoMoat() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,10 +24,7 @@ public class BeginShooting extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        
-        addSequential(new HoldBall());
-        addParallel(new SpinShooter());
-        //addSequential(new RaiseIntake());
-        
+        addSequential(new LowerIntake());
+        addSequential(new ManualDrive(1, 0, 5));
     }
 }

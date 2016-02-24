@@ -5,41 +5,36 @@ import org.usfirst.frc.team5517.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Raise the intake bar
+ * Split arcade drive 
+ * One stick for left/right, one stick for forward/backward
  */
-public class RaiseIntake extends Command {
+public class SplitArcadeDrive extends Command {
 
-    private final int TIMEOUT_SECONDS = 5; // TODO: adjust this
-
-    public RaiseIntake() {
-        requires(Robot.intakeSubsystem);
+    public SplitArcadeDrive() {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.driveTrainSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(TIMEOUT_SECONDS);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.intakeSubsystem.pivotUp();
+        Robot.driveTrainSubsystem.arcadeDrive(Robot.oi.getLeftJoystickY(), Robot.oi.getRightJoystickX());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        // Wait for limit switch, or timeout 
-        // (timeout should only occur if switch is not functioning)
-        return isTimedOut(); //Robot.intakeSubsystem.isIntakeUp() || isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.intakeSubsystem.pivotStop();
     }
 
     // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run 
+    // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

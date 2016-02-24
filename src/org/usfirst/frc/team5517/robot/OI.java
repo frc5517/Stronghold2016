@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5517.robot;
 
-import org.usfirst.frc.team5517.robot.commands.BeginShooting;
-import org.usfirst.frc.team5517.robot.commands.LowerIntake;
-import org.usfirst.frc.team5517.robot.commands.RaiseIntake;
+import org.usfirst.frc.team5517.robot.commands.BeginShootingHighGoalSequence;
+import org.usfirst.frc.team5517.robot.commands.IntakeBallSequence;
 import org.usfirst.frc.team5517.robot.commands.ReleaseBall;
-import org.usfirst.frc.team5517.robot.commands.SpinIntakeRollerIn;
-import org.usfirst.frc.team5517.robot.commands.StopShooter;
+import org.usfirst.frc.team5517.robot.commands.ReverseShooter;
 import org.usfirst.frc.team5517.robot.utils.Gamepad;
 
 /**
@@ -44,21 +42,28 @@ public class OI {
     Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
     public OI() {
-        mainDriverGamepad.getButtonA().whenPressed(new BeginShooting());
-        mainDriverGamepad.getButtonB().whenPressed(new StopShooter());
-        //mainDriverGamepad.getButtonB().whileHeld(new ReverseShooter());
-        mainDriverGamepad.getLeftShoulder().whileHeld(new LowerIntake());
-        mainDriverGamepad.getRightShoulder().whileHeld(new RaiseIntake());
-        mainDriverGamepad.getButtonX().whileHeld(new SpinIntakeRollerIn());
-        mainDriverGamepad.getButtonY().whenPressed(new ReleaseBall());
+        operatorGamepad.getButtonA().toggleWhenPressed(new BeginShootingHighGoalSequence());
+        operatorGamepad.getButtonB().whileHeld(new ReverseShooter());
+        //operatorGamepad.getLeftShoulder().whileHeld(new LowerIntake());
+        //operatorGamepad.getRightShoulder().whileHeld(new RaiseIntake());
+        operatorGamepad.getButtonX().whileHeld(new IntakeBallSequence());
+        operatorGamepad.getButtonY().whenPressed(new ReleaseBall());
     }
 
     public double getLeftJoystickY() {
         return -mainDriverGamepad.getLeftY();
     }
 
+    public double getLeftJoystickX() {
+        return -mainDriverGamepad.getLeftX();
+    }
+
     public double getRightJoystickY() {
         return -mainDriverGamepad.getRightY();
+    }
+
+    public double getRightJoystickX() {
+        return -mainDriverGamepad.getRightX();
     }
 
 

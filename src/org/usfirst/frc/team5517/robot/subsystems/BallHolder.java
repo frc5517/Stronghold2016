@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BallHolder extends Subsystem {
     
+    private final double SPEED = 0.2;
+    
     Victor motor = new Victor(RobotMap.ballHolderMotorPWM);
 
     public void initDefaultCommand() {
@@ -21,14 +23,14 @@ public class BallHolder extends Subsystem {
      * Move towards ball
      */
     public void holdBall() {
-        motor.set(0.2);
+        motor.set(SPEED);
     }
     
     /**
      * Release ball into shooter flywheels
      */
     public void releaseBall() {
-        motor.set(-0.2);
+        motor.set(-SPEED);
     }
     
     public void stop() {
