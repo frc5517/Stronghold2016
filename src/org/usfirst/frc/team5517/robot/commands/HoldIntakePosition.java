@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SpinIntakeRollerOut extends Command {
-    
-    public SpinIntakeRollerOut() {
+public class HoldIntakePosition extends Command {
+
+    public HoldIntakePosition() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intakeSubsystem);
     }
@@ -20,17 +20,26 @@ public class SpinIntakeRollerOut extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.intakeSubsystem.spinRollerOut();
+        // if intake arm should be up, but limit switch says it isn't
+        if(Robot.intakeSubsystem.intakeArmUp && !Robot.intakeSubsystem.isIntakeUp()) {
+            Robot.intakeSubsystem.pivotUp();
+        }
+        // if intake arm should be down, but limit switch says it isn't
+        else if(Robot.intakeSubsystem.intakeArmDown && !Robot.intakeSubsystem.isIntakeDown()) {
+            Robot.intakeSubsystem.pivotDown();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(Robot.intakeSubsystem.intakeArmUp && Robot.intakeSubsystem.isIntakeUp()) return true;
+        else if(Robot.intakeSubsystem.intakeArmDown && Robot.intakeSubsystem.isIntakeDown()) return true;
+        else return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.intakeSubsystem.stopRoller();
+        Robot.intakeSubsystem.pivotStop();
     }
 
     // Called when another command which requires one or more of the same

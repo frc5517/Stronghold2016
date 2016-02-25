@@ -11,19 +11,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-    public final double ROLLER_IN_SPEED = 1;
-    public final double ROLLER_OUT_SPEED = 0.4;
-    public final double PIVOT_UP_SPEED = 0.7;
-    public final double PIVOT_DOWN_SPEED = 0.7;
+    private final double ROLLER_IN_SPEED = 1;
+    private final double ROLLER_OUT_SPEED = 0.4;
+    private final double PIVOT_UP_SPEED = 0.7;
+    private final double PIVOT_DOWN_SPEED = 0.7;
+    
+    public boolean intakeArmUp = false;
+    public boolean intakeArmDown = false;
     
     Victor pivotMotor = new Victor(RobotMap.intakePivotMotorPWM);
     Victor rollerMotor = new Victor(RobotMap.intakeRollerMotorPWM);
     DigitalInput upLimitSwitch = new DigitalInput(RobotMap.intakeLimitSwitchDown);
     DigitalInput downLimitSwitch = new DigitalInput(RobotMap.intakeLimitSwitchUp);
 
+    public Intake() {
+        intakeArmUp = isIntakeUp();
+        intakeArmDown = isIntakeDown();
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new ());
+        //setDefaultCommand(new HoldIntakePosition());
+        //commented out until intake arm can actually lift
     }
     
     /**
@@ -31,6 +40,8 @@ public class Intake extends Subsystem {
      */
     public void pivotUp() {
         pivotMotor.set(-PIVOT_UP_SPEED);
+        intakeArmUp = true;
+        intakeArmDown = false;
     }
     
     /**
@@ -38,6 +49,8 @@ public class Intake extends Subsystem {
      */
     public void pivotDown() {
         pivotMotor.set(PIVOT_DOWN_SPEED);
+        intakeArmUp = false;
+        intakeArmDown = true;
     }
     
     /**
@@ -65,18 +78,16 @@ public class Intake extends Subsystem {
     
     /**
      * Spin intake roller inward
-     * @param percent -1.0 - 1.0
      */
-    public void spinRollerIn(double percent) {
-        rollerMotor.set(percent);
+    public void spinRollerIn() {
+        rollerMotor.set(ROLLER_IN_SPEED);
     }
     
     /**
      * Spin intake roller outward
-     * @param percent -1.0 - 1.0
      */
-    public void spinRollerOut(double percent) {
-        rollerMotor.set(-percent);
+    public void spinRollerOut() {
+        rollerMotor.set(-ROLLER_OUT_SPEED);
     }
     
     /**
