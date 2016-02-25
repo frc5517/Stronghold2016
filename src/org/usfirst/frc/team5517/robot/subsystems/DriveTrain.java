@@ -50,8 +50,8 @@ public class DriveTrain extends Subsystem {
     
     /**
      * Manually drive robot with output and curve
-     * @param outputMagnitude -1.0 - 1.0 Speed
-     * @param curve -1.0 - 1.0. Less than 0 turns left, greater than 0 turns right
+     * @param outputMagnitude The speed setting for the outside wheel in a turn, forward or backwards, +1 to -1.
+     * @param curve The rate of turn, constant for different forward speeds. Set curve < 0 for left turn or curve > 0 for right turn. Set curve = e^(-r/w) to get a turn radius r for wheelbase w of your robot. Conversely, turn radius r = -ln(curve)*w for a given value of curve and wheelbase w.
      */
     public void manualDrive(double outputMagnitude, double curve) {
         robotDrive.drive(outputMagnitude, curve);
