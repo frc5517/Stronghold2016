@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5517.robot.subsystems;
 
 import org.usfirst.frc.team5517.robot.RobotMap;
+import org.usfirst.frc.team5517.robot.commands.ArcadeDrive;
+import org.usfirst.frc.team5517.robot.commands.SplitArcadeDrive;
 import org.usfirst.frc.team5517.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -14,6 +16,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
     
     private final double TANK_DRIVE_EXPONENTIAL = 1.2;
+    private DriveMode chosenDriveMode;
+    
+    // Drive mode options
+    public enum DriveMode {
+        TANK_DRIVE, ARCADE_DRIVE, SPLIT_ARCADE_DRIVE
+    }
 
     Talon driveLeft1 = new Talon(RobotMap.driveTrainLeft1PWM);
     Talon driveLeft2 = new Talon(RobotMap.driveTrainLeft2PWM);
@@ -21,12 +29,23 @@ public class DriveTrain extends Subsystem {
     Talon driveRight2 = new Talon(RobotMap.driveTrainRight2PWM);
     RobotDrive robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
 
-    public DriveTrain() {
+    public DriveTrain(DriveMode driveMode) {
         robotDrive.setSafetyEnabled(false);
+        this.chosenDriveMode = driveMode;
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new TankDrive());
+        switch(chosenDriveMode) {
+            case TANK_DRIVE: 
+                setDefaultCommand(new TankDrive());
+            break;
+            case ARCADE_DRIVE:
+                setDefaultCommand(new ArcadeDrive());
+            break;
+            case SPLIT_ARCADE_DRIVE:
+                setDefaultCommand(new SplitArcadeDrive());
+            break;
+        }
     }
     
     /**

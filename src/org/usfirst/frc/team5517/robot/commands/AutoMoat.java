@@ -3,7 +3,7 @@ package org.usfirst.frc.team5517.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Cross the moat
  */
 public class AutoMoat extends CommandGroup {
     

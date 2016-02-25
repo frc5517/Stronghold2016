@@ -1,6 +1,14 @@
 
 package org.usfirst.frc.team5517.robot;
 
+import org.usfirst.frc.team5517.robot.commands.AutoDoNothing;
+import org.usfirst.frc.team5517.robot.commands.AutoLowBar;
+import org.usfirst.frc.team5517.robot.commands.AutoMoat;
+import org.usfirst.frc.team5517.robot.commands.AutoRamparts;
+import org.usfirst.frc.team5517.robot.commands.AutoReachDefense;
+import org.usfirst.frc.team5517.robot.commands.AutoRockWall;
+import org.usfirst.frc.team5517.robot.commands.AutoRoughTerrain;
+import org.usfirst.frc.team5517.robot.commands.AutoTeeterTotter;
 import org.usfirst.frc.team5517.robot.subsystems.BallHolder;
 import org.usfirst.frc.team5517.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5517.robot.subsystems.Intake;
@@ -23,25 +31,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
     // Subsystems
-    public static final DriveTrain driveTrainSubsystem = new DriveTrain();
+    public static final DriveTrain driveTrainSubsystem = new DriveTrain(DriveTrain.DriveMode.TANK_DRIVE);
     public static final Intake intakeSubsystem = new Intake();
     public static final Shooter shooterSubsystem = new Shooter();
     public static final BallHolder ballHolderSubsystem = new BallHolder();
-    public static OI oi;
+    public static OI oi = new OI();
 
     Command autonomousCommand;
-    SendableChooser chooser;
+    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-        oi = new OI();
-        chooser = new SendableChooser();
-        //chooser.addDefault("Auto Reach Defense", new AutoReachDefense());
-        //        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto Mode", chooser);
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Reach Defense", new AutoReachDefense());
+        autoChooser.addObject("Do Nothing", new AutoDoNothing());
+        autoChooser.addObject("Low Bar", new AutoLowBar());
+        autoChooser.addObject("Moat", new AutoMoat());
+        autoChooser.addObject("Ramparts", new AutoRamparts());
+        autoChooser.addObject("Rock Wall", new AutoRockWall());
+        autoChooser.addObject("Rough Terrain", new AutoRoughTerrain());
+        autoChooser.addObject("Teeter Totters", new AutoTeeterTotter());
+        SmartDashboard.putData("Auto Mode", autoChooser);
     }
 
     /**
@@ -67,20 +80,7 @@ public class Robot extends IterativeRobot {
      * or additional comparisons to the switch structure below with additional strings & commands.
      */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-
-        /* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-
-        // schedule the autonomous command (example)
+        autonomousCommand = (Command) autoChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

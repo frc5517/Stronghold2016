@@ -3,11 +3,11 @@ package org.usfirst.frc.team5517.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Cross the rock wall
+ * Drive forward and reach a defense
  */
-public class AutoRockWall extends CommandGroup {
+public class AutoReachDefense extends CommandGroup {
     
-    public  AutoRockWall() {
+    public  AutoReachDefense() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,6 +25,6 @@ public class AutoRockWall extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new LowerIntake());
-        addSequential(new ManualDrive(1, 0, 5));
+        addSequential(new ManualDrive(0.5, 0, 2));
     }
 }
