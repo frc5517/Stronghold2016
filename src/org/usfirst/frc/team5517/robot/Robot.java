@@ -14,6 +14,7 @@ import org.usfirst.frc.team5517.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5517.robot.subsystems.Intake;
 import org.usfirst.frc.team5517.robot.subsystems.Shooter;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,14 +32,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
     // Subsystems
-    public static final DriveTrain driveTrainSubsystem = new DriveTrain(DriveTrain.DriveMode.TANK_DRIVE);
+    public static final DriveTrain driveTrainSubsystem = new DriveTrain(DriveTrain.DriveMode.SPLIT_ARCADE_DRIVE);
     public static final Intake intakeSubsystem = new Intake();
     public static final Shooter shooterSubsystem = new Shooter();
     public static final BallHolder ballHolderSubsystem = new BallHolder();
     public static OI oi = new OI();
-
+    
+    CameraServer server;
     Command autonomousCommand;
     SendableChooser autoChooser;
+    
+    public Robot() {
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        //the camera name (ex "cam0") can be found through the roborio web interface
+        server.startAutomaticCapture("cam0");
+    }
 
     /**
      * This function is run when the robot is first started up and should be
@@ -80,8 +89,10 @@ public class Robot extends IterativeRobot {
      * or additional comparisons to the switch structure below with additional strings & commands.
      */
     public void autonomousInit() {
-        autonomousCommand = (Command) autoChooser.getSelected();
-        if (autonomousCommand != null) autonomousCommand.start();
+        //autonomousCommand = (Command) autoChooser.getSelected();
+        //if (autonomousCommand != null) autonomousCommand.start();
+        Command autoCommand = new AutoLowBar();
+        autoCommand.start();
     }
 
     /**

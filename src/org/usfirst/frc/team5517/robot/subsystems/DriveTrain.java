@@ -30,7 +30,8 @@ public class DriveTrain extends Subsystem {
     RobotDrive robotDrive = new RobotDrive(driveLeft1, driveLeft2, driveRight1, driveRight2);
 
     public DriveTrain(DriveMode driveMode) {
-        robotDrive.setSafetyEnabled(false);
+        robotDrive.setSafetyEnabled(true);
+        robotDrive.setExpiration(.1);
         this.chosenDriveMode = driveMode;
     }
 

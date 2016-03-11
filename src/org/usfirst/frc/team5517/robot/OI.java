@@ -2,8 +2,11 @@ package org.usfirst.frc.team5517.robot;
 
 import org.usfirst.frc.team5517.robot.commands.BeginShootingHighGoalSequence;
 import org.usfirst.frc.team5517.robot.commands.IntakeBallSequence;
+import org.usfirst.frc.team5517.robot.commands.LowerIntake;
+import org.usfirst.frc.team5517.robot.commands.OutakeBallSequence;
+import org.usfirst.frc.team5517.robot.commands.RaiseIntake;
 import org.usfirst.frc.team5517.robot.commands.ReleaseBall;
-import org.usfirst.frc.team5517.robot.commands.ReverseShooter;
+import org.usfirst.frc.team5517.robot.commands.StopShooter;
 import org.usfirst.frc.team5517.robot.utils.Gamepad;
 
 /**
@@ -17,27 +20,50 @@ public class OI {
 
     public OI() {
         operatorGamepad.getButtonA().toggleWhenPressed(new BeginShootingHighGoalSequence());
-        operatorGamepad.getButtonB().whileHeld(new ReverseShooter());
-        //operatorGamepad.getLeftShoulder().whileHeld(new LowerIntake());
-        //operatorGamepad.getRightShoulder().whileHeld(new RaiseIntake());
+        operatorGamepad.getButtonB().whenPressed(new ReleaseBall());
+        
+        //operatorGamepad.getButtonB().whileHeld(new ReverseShooter());
+        
+        operatorGamepad.getLeftShoulder().whileHeld(new RaiseIntake());
+        operatorGamepad.getRightShoulder().whileHeld(new LowerIntake());
+        
         operatorGamepad.getButtonX().whileHeld(new IntakeBallSequence());
-        operatorGamepad.getButtonY().whenPressed(new ReleaseBall());
+        operatorGamepad.getButtonY().whileHeld(new OutakeBallSequence());
+        operatorGamepad.getButtonY().whenReleased(new StopShooter());
     }
 
     public double getLeftJoystickY() {
-        return -mainDriverGamepad.getLeftY();
+        double y = mainDriverGamepad.getLeftY();
+        double sign = 1;
+        if(y < 0) {
+            sign = -1;
+            y = -y;
+        }
+        return -( y * y * sign);
     }
 
     public double getLeftJoystickX() {
-        return -mainDriverGamepad.getLeftX();
+        return -( mainDriverGamepad.getLeftX() * mainDriverGamepad.getLeftX());
     }
 
     public double getRightJoystickY() {
-        return -mainDriverGamepad.getRightY();
+        double y = mainDriverGamepad.getRightY();
+        double sign = 1;
+        if(y < 0) {
+            sign = -1;
+            y = -y;
+        }
+        return -( y * y * sign);
     }
 
     public double getRightJoystickX() {
-        return -mainDriverGamepad.getRightX();
+        double y = mainDriverGamepad.getRightX();
+        double sign = 1; 
+        if(y < 0) {
+            sign = -1;
+            y = -y;
+        }
+        return -( y * y * sign);
     }
 
 

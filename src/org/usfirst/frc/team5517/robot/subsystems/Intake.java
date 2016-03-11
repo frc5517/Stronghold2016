@@ -14,7 +14,7 @@ public class Intake extends Subsystem {
     private final double ROLLER_IN_SPEED = 1;
     private final double ROLLER_OUT_SPEED = 0.4;
     private final double PIVOT_UP_SPEED = 0.7;
-    private final double PIVOT_DOWN_SPEED = 0.7;
+    private final double PIVOT_DOWN_SPEED = 0.4;
     
     public boolean intakeArmUp = false;
     public boolean intakeArmDown = false;
@@ -39,7 +39,7 @@ public class Intake extends Subsystem {
      * Move the intake bar up
      */
     public void pivotUp() {
-        pivotMotor.set(-PIVOT_UP_SPEED);
+        pivotMotor.set(PIVOT_UP_SPEED);
         intakeArmUp = true;
         intakeArmDown = false;
     }
@@ -48,7 +48,16 @@ public class Intake extends Subsystem {
      * Move the intake bar down
      */
     public void pivotDown() {
-        pivotMotor.set(PIVOT_DOWN_SPEED);
+        pivotMotor.set(-PIVOT_DOWN_SPEED);
+        intakeArmUp = false;
+        intakeArmDown = true;
+    }
+    
+    /**
+     * Move the intake bar down
+     */
+    public void pivotDownAtSpeed(double speed) {
+        pivotMotor.set(speed);
         intakeArmUp = false;
         intakeArmDown = true;
     }
