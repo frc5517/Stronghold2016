@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class LowerIntake extends Command {
 
-    private final double TIMEOUT_SECONDS = 2; // TODO: adjust this
+    private final double TIMEOUT_SECONDS = 5;
 
     public LowerIntake() {
         requires(Robot.intakeSubsystem);

@@ -19,17 +19,24 @@ public class OI {
     Gamepad operatorGamepad = new Gamepad(RobotMap.operatorGamepadPort);
 
     public OI() {
-        operatorGamepad.getButtonA().toggleWhenPressed(new BeginShootingHighGoalSequence());
-        operatorGamepad.getButtonB().whenPressed(new ReleaseBall());
         
-        //operatorGamepad.getButtonB().whileHeld(new ReverseShooter());
-        
+        // Left Shoulder: Raise Intake
         operatorGamepad.getLeftShoulder().whileHeld(new RaiseIntake());
+        // Right Shoulder: Lower Intake
         operatorGamepad.getRightShoulder().whileHeld(new LowerIntake());
         
+        // Button A: Spin up shooter
+        operatorGamepad.getButtonA().toggleWhenPressed(new BeginShootingHighGoalSequence());
+        // Button B: Release ball
+        operatorGamepad.getButtonB().whenPressed(new ReleaseBall());
+        
+        // Button X: Intake ball
         operatorGamepad.getButtonX().whileHeld(new IntakeBallSequence());
+        // Button Y: spit out ball
         operatorGamepad.getButtonY().whileHeld(new OutakeBallSequence());
         operatorGamepad.getButtonY().whenReleased(new StopShooter());
+        
+        
     }
 
     public double getLeftJoystickY() {

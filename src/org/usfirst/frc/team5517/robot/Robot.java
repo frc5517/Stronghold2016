@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Rock Wall", new AutoRockWall());
         autoChooser.addObject("Rough Terrain", new AutoRoughTerrain());
         autoChooser.addObject("Teeter Totters", new AutoTeeterTotter());
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        SmartDashboard.putData("Autonomous mode chooser", autoChooser);
     }
 
     /**
@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
      * the robot is disabled.
      */
     public void disabledInit(){
-
+        
     }
 
     public void disabledPeriodic() {
@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         //autonomousCommand = (Command) autoChooser.getSelected();
         //if (autonomousCommand != null) autonomousCommand.start();
-        Command autoCommand = new AutoLowBar();
+        Command autoCommand = new AutoMoat();
         autoCommand.start();
     }
 

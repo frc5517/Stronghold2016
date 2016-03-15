@@ -10,6 +10,6 @@ public class IntakeBallSequence extends CommandGroup {
     public  IntakeBallSequence() {
         addParallel(new SpinIntakeRollerIn()); // spin 
         addParallel(new ReverseShooter()); // reverse shoot wheels
-        addParallel(new ReleaseBall()); // move ball holder into rest position
+        //addParallel(new ReleaseBall()); // move ball holder into rest position
     }
 }

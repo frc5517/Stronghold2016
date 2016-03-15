@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RaiseIntake extends Command {
 
-    private final int TIMEOUT_SECONDS = 5; // TODO: adjust this
+    private final int TIMEOUT_SECONDS = 5;
 
     public RaiseIntake() {
         requires(Robot.intakeSubsystem);

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BallHolder extends Subsystem {
     
-    private final double SPEED = 0.2;
+    private final double SPEED = 0.8;
     
     Victor motor = new Victor(RobotMap.ballHolderMotorPWM);
 

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
     
     private final double ROLLER_IN_SPEED = 1;
-    private final double ROLLER_OUT_SPEED = 0.4;
+    private final double ROLLER_OUT_SPEED = 0.85;
     private final double PIVOT_UP_SPEED = 0.7;
     private final double PIVOT_DOWN_SPEED = 0.4;
     
